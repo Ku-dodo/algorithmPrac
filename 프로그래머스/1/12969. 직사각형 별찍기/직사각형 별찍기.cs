@@ -15,7 +15,7 @@ public class Example
         string str = "";
         for(int i = 0; i < a; i++)
         {
-        str += '*';    
+            str += '*';    
         }
         for(int i = 0; i < b; i++)
         {
