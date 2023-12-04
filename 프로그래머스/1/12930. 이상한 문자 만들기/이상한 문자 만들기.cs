@@ -23,7 +23,6 @@ public class Solution {
             j++;
         }
         
-        string answer = "";
         return sb.ToString();
     }
 }
