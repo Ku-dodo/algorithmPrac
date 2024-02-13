@@ -36,11 +36,8 @@ public class Solution {
         {
             return "0";
         }
-        else
-        {
-            answer = string.Concat(answer.OrderByDescending(ch => ch));
-        }
-        
-        return answer;
+
+        return string.Concat(answer.OrderByDescending(ch => ch));
+
     }
 }
