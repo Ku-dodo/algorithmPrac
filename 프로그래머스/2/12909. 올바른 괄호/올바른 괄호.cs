@@ -11,15 +11,9 @@ public class Solution {
             if (s[i] == '(') LR++;
             else LR--;
             
-            if (LR < 0)
-            {
-                answer = false;
-                break;
-            }
+            if (LR < 0) return false;
         }
-        if(LR == 0) answer = true;
-        else answer = false;
-        
-        return answer;
+
+        return LR == 0;
     }
 }
