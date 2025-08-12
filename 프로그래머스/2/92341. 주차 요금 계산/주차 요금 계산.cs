@@ -5,66 +5,65 @@ public class Solution
 {
     public int[] solution(int[] fees, string[] records)
     {
-        SortedDictionary<string, timeMemory> rc = new SortedDictionary<string, timeMemory>();
-
-        foreach (var r in records)
+        SortedDictionary<string , Recorder> parkRecoder = new SortedDictionary<string , Recorder>();
+        foreach (var rec in records)
         {
-            string[] rArray = r.Split();
-            if (!rc.ContainsKey(rArray[1]))
-                rc.Add(rArray[1], new timeMemory());
+            string[] recArray = rec.Split(' ');
 
-            int nowTime = calMin(rArray[0]);
-            rc[rArray[1]].inputTime(calMin(rArray[0]));
+            if (!parkRecoder.ContainsKey(recArray[1]))
+            {
+                parkRecoder.Add(recArray[1], new Recorder());
+            }
+
+            parkRecoder[recArray[1]].Parking(recArray[0]);
         }
 
 
-        List<int> list = new List<int>();
-
-        foreach (var d in rc.Values) 
+        List<int> answer = new List<int>();
+        foreach (var r in parkRecoder.Values)
         {
-            if (d.isParking)
-                d.inputTime(1439);
+            if (r.isParking)
+            {
+                r.Parking("23:59");
+            }
 
-            list.Add(calFee(fees, d.times));
+
+            if (r.times <= fees[0] && !r.isParking)
+            {
+                answer.Add(fees[1]);
+            }
+            else
+            {
+                answer.Add(fees[1] + (int)MathF.Ceiling((float)(r.times - fees[0]) / fees[2]) * fees[3]);
+            }
         }
 
-        return list.ToArray();
+        return answer.ToArray();
     }
-    
-    public int calMin(string s)
-    {   
-        string[] a = s.Split(':');
-        return int.Parse(a[0]) * 60 + int.Parse(a[1]); 
-    }
-    public int calFee(int[] i, int time)
-    {
-        int a = 0;
-        if(time <= i[0])
-            a = i[1];
-        else
-            a = i[1] + (int)MathF.Ceiling((float)(time - i[0]) / i[2]) * i[3];
-            return a;
-    }
-
 }
 
-public class timeMemory
+public class Recorder
 {
-    public int recordTime = 0;
-    public int times = 0;
+    public int times, parkInTime;
     public bool isParking = false;
 
-    public void inputTime(int a)
+    public void Parking(string time)
     {
         if (isParking)
         {
-            times += a - recordTime;
-            recordTime = 0;
+            times += StrToMin(time) - parkInTime;
+            isParking = false;
         }
         else
         {
-            recordTime = a;
+            parkInTime = StrToMin(time);
+            isParking=true;
         }
-        isParking = !isParking;
+    }
+
+    private int StrToMin(string time)
+    {
+        string[] s = time.Split(':');
+        return int.Parse(s[0]) * 60 + int.Parse(s[1]);
     }
 }
