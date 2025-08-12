@@ -4,7 +4,6 @@ public class Solution
 {
     public int solution(int[] arr)
     {
-
         Array.Sort(arr);
         int multiple = 1;
 
@@ -26,7 +25,6 @@ public class Solution
                 break;
         }
 
-        int answer = arr[arr.Length - 1] * multiple;
-        return answer;
+        return arr[arr.Length - 1] * multiple;
     }
 }

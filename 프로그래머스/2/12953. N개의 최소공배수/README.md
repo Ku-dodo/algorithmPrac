@@ -1,10 +1,10 @@
 # [level 2] N개의 최소공배수 - 12953 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12953) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/12953?language=csharp) 
 
 ### 성능 요약
 
-메모리: 31.6 MB, 시간: 2.48 ms
+메모리: 31.4 MB, 시간: 2.50 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2025년 08월 12일 20:27:10
+2025년 08월 12일 20:28:41
 
 ### 문제 설명
 
