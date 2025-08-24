@@ -5,7 +5,6 @@ public class Solution
 {
     public Queue<Pos> q = new Queue<Pos>();
 
-
     public struct Pos
     {
         public int x, y, moveCount;
@@ -31,7 +30,6 @@ public class Solution
         int[] y = { -1, 1, 0, 0 };
         int[] x = { 0, 0, -1, 1 };
 
-
         while (q.Count > 0)
         {
             Pos currPos = q.Dequeue();
@@ -45,7 +43,6 @@ public class Solution
             {
                 int nextY = currPos.y;
                 int nextX = currPos.x;
-
 
                 while (true)
                 {
@@ -66,10 +63,8 @@ public class Solution
                     BoardVisit[nextY, nextX] = true;
                     q.Enqueue(new Pos {y = nextY, x = nextX, moveCount = currPos.moveCount + 1 }); ;
                 }
-
             }
         }
-
 
         return -1;
     }
