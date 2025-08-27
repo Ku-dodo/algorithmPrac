@@ -10,8 +10,8 @@ class Solution
         {
             answer++;
 
-            a = (a + 1) / 2;
-            b = (b + 1) / 2;
+            a = (a + 1) >> 1;
+            b = (b + 1) >> 1;
         }
 
         return answer;
