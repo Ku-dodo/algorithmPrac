@@ -12,8 +12,7 @@ class Solution
         {
             if (str.Contains(words[i]))
                 return new int[] { count % n == 0 ? n : count % n, (int)MathF.Ceiling((float)count / n) };
-                str.Add(words[i]);
-
+            str.Add(words[i]);
             count++;
             if (i < words.Length - 1 && words[i][words[i].Length - 1] != words[i + 1][0])
                 return new int[] { count % n == 0 ? n : count % n, (int)MathF.Ceiling((float)count / n) };
