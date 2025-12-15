@@ -1,36 +1,38 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 public class Solution
 {
+    public struct P
+    {
+        public int locate = 0;
+        public int pri = 0;
+        public P(int locate, int pri)
+        {
+            this.locate = locate;
+            this.pri = pri;
+        }
+    }
+
     public int solution(int[] priorities, int location)
     {
-        Queue<(int idx, int pri)> queue = new Queue<(int, int)> ();
+        P[] pArray = new P[priorities.Length];
         for (int i = 0; i < priorities.Length; i++)
         {
-            queue.Enqueue((i, priorities[i]));
+            pArray[i] = new P(i, priorities[i]);
         }
 
-        int order = 0;
-        while (queue.Count > 0)
+        pArray = pArray.OrderBy(item => item.pri).ToArray();
+
+        int a = 0;
+
+        for (int i = 0; i < pArray.Length; i++)
         {
-            var current = queue.Dequeue ();
-
-            if (queue.Any(item => item.pri > current.pri))
+            if (pArray[i].locate == location)
             {
-                queue.Enqueue (current);
-            }
-            else
-            {
-                order++;
-                if (current.idx == location)
-                {
-                    return order;
-                }
+                a = i;
+                break;
             }
         }
-
-        return 0;
+        return a;
     }
 }
